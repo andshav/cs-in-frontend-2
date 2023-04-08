@@ -1,0 +1,23 @@
+# WebStorm IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Node.js
+node_modules/
+
+# Bower
+bower_components/
+
+# Build directory
+dist/
+build/
+
+# Temp files
+.log
+.tmp
+
+# OS-specific files
+.DS_Store
+Thumbs.db
