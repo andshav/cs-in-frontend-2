@@ -1,4 +1,5 @@
-import { DecodeValueProps, GetValueProps, ValueType } from "./index.types";
+import { DecodeValueProps, GetValueProps } from "./index.types";
+import { ValueType } from "../index.types";
 import { getByteIndex, getBitIndex } from "../helpers";
 import { BYTE_SIZE } from "../constants";
 
