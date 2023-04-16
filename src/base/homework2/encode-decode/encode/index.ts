@@ -24,7 +24,7 @@ export function encode(data: ValueType[], schema: Schema[]): ArrayBuffer {
     const [bitSize, type] = schema[i];
     const value = encodeValue({ value: data[i], bitSize, type });
     setValue({ bitAccessor, index: cursor, value });
-    cursor += value.length;
+    cursor += bitSize;
   }
 
   return byteArray.buffer;
