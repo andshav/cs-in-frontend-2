@@ -1,7 +1,9 @@
+import { BYTE_SIZE } from "./constants";
+
 export function getByteIndex(index: number) {
-  return Math.floor(index / 8);
+  return Math.floor(index / BYTE_SIZE);
 }
 
 export function getBitIndex(index: number) {
-  return index % 8;
+  return index % BYTE_SIZE;
 }

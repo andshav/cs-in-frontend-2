@@ -7,6 +7,7 @@ import {
 import createBitAccessor from "../../homework1/bit-getter";
 import { isBinaryUnit } from "../../homework1/bit-getter/index.types";
 import { getByteIndex, getBitIndex } from "./helpers";
+import { BYTE_SIZE } from "./constants";
 
 export function encode(data: ValueType[], schema: Schema[]): ArrayBuffer {
   if (data.length !== schema.length) {
@@ -43,7 +44,7 @@ export function encode(data: ValueType[], schema: Schema[]): ArrayBuffer {
     if (typeof value !== "string") {
       throw new Error("Invalid type value: expected string");
     }
-    if (bitSize < value.length * 8) {
+    if (bitSize < value.length * BYTE_SIZE) {
       throw new Error(`Specified size for ${value} is not enough`);
     }
     return value.replace(/./g, replacer).padStart(bitSize, "0");
@@ -53,7 +54,7 @@ export function encode(data: ValueType[], schema: Schema[]): ArrayBuffer {
       if (charCode > 255) {
         throw new Error(`${char} does not belong to ascii encoding`);
       }
-      return char.charCodeAt(0).toString(2).padStart(8, "0");
+      return char.charCodeAt(0).toString(2).padStart(BYTE_SIZE, "0");
     }
   }
 
@@ -98,7 +99,7 @@ export function encode(data: ValueType[], schema: Schema[]): ArrayBuffer {
   }
 
   function getByteSize(bitSize: number) {
-    return Math.ceil(bitSize / 8);
+    return Math.ceil(bitSize / BYTE_SIZE);
   }
   function setValue({ bitAccessor, value, index }: SetValueProps) {
     for (let i = 0; i < value.length; i++) {

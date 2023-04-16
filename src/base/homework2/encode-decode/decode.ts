@@ -6,6 +6,7 @@ import {
 } from "./index.types";
 import createBitAccessor from "../../homework1/bit-getter";
 import { getBitIndex, getByteIndex } from "./helpers";
+import { BYTE_SIZE } from "./constants";
 
 export function decode(data: ArrayBuffer, schema: Schema[]): ValueType[] {
   const { length } = schema;
@@ -48,10 +49,10 @@ export function decode(data: ArrayBuffer, schema: Schema[]): ValueType[] {
     value,
     bitSize
   }: Omit<DecodeValueProps, "type">): string {
-    const unwantedBits = bitSize % 8;
+    const unwantedBits = bitSize % BYTE_SIZE;
     const wantedValue = value.slice(unwantedBits);
 
-    return wantedValue.replace(/\d{8}/g, (item) =>
+    return wantedValue.replace(new RegExp(`\\d{${BYTE_SIZE}}`, "g"), (item) =>
       String.fromCharCode(parseInt(item, 2))
     );
   }
