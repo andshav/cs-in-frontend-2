@@ -1,8 +1,6 @@
-import { BinaryUnit, createBitAccessorApi } from "./index.types";
+import { BinaryUnit, BitAccessor } from "./index.types";
 
-export default function createBitAccessor(
-  uint8Arr: Uint8Array
-): createBitAccessorApi {
+export default function createBitAccessor(uint8Arr: Uint8Array): BitAccessor {
   function validate(elemIndex: number, bitIndex: number) {
     if (elemIndex < 0 || elemIndex >= uint8Arr.length) {
       throw new Error("elemIndex out of array range");
